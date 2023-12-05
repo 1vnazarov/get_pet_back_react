@@ -1,15 +1,15 @@
-import Auth from "../components/auth";
+import Register from "../components/register";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
-const AuthPage = () => {
+const RegisterPage = () => {
     return (  
         <div>
             <Header/>
-            <Auth/>
+            <Register/>
             <Footer/>
         </div>
     );
 }
  
-export default AuthPage;
+export default RegisterPage;

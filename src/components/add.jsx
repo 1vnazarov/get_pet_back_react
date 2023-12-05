@@ -22,7 +22,7 @@ const Add = () => {
                     </div>
                 </div>
                 <details>
-                    <h2 className="text-center text-white bg-primary mt-3" style="margin-right: 10%;">Регистрация</h2>
+                    <h2 className="text-center text-white bg-primary mt-3" style={{"marginRight":"10%"}}>Регистрация</h2>
                     <form>
                         <div className="row mb-3">
                             <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
@@ -40,8 +40,8 @@ const Add = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Зарегистрироваться</button>
                     </form>
-                    <h2 className="text-center bg-primary mt-3" style="margin-right: 10%;">ㅤ</h2>
-                    <summary className="btn btn-primary" style="list-style-type: none;">Регистрация</summary>
+                    <h2 className="text-center bg-primary mt-3" style={{"marginRight":"10%"}}>ㅤ</h2>
+                    <summary className="btn btn-primary" style={{"listStyleType":"none"}}>Регистрация</summary>
                 </details>
                 <div className="row mb-3">
                     <label htmlFor="photo1" className="col-form-label">Изображение 1</label>

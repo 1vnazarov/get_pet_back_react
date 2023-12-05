@@ -4,25 +4,25 @@ const Profile = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
-            <form className="w-50 m-auto minContainer">
+            <form className="w-25 m-auto minContainer">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
-                    <div className="col-sm-10">
-                        <input className="form-control" id="name" value="Иван Иванович Иванов" readonly />
+                    <div className="col-sm-10 w-100">
+                        <input className="form-control m-auto" id="name" value="Иван Иванович Иванов" readonly />
                     </div>
                 </div>
                 <button className="btn btn-primary">Изменить</button>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
-                    <div className="col-sm-10">
-                        <input type="email" value="user@user.com" className="form-control" id="inputEmail3" readonly />
+                    <div className="col-sm-10 w-100">
+                        <input type="email" value="user@user.com" className="form-control m-auto" id="inputEmail3" readonly />
                     </div>
                 </div>
                 <button className="btn btn-primary">Изменить</button>
                 <div className="row mb-3">
                     <label htmlFor="tel" className="col-form-label">Телефон</label>
-                    <div className="col-sm-10">
-                        <input type="tel" className="form-control" id="tel" value="89112345678" readonly />
+                    <div className="col-sm-10 w-100">
+                        <input type="tel" className="form-control m-auto" id="tel" value="89112345678" readonly />
                     </div>
                 </div>
                 <button className="btn btn-primary">Изменить</button>

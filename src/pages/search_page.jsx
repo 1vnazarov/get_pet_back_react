@@ -1,15 +1,15 @@
-import Auth from "../components/auth";
+import Search from "../components/search";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
-const AuthPage = () => {
+const SearchPage = () => {
     return (  
         <div>
             <Header/>
-            <Auth/>
+            <Search/>
             <Footer/>
         </div>
     );
 }
  
-export default AuthPage;
+export default SearchPage;
