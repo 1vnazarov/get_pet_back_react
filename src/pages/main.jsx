@@ -3,7 +3,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import Slider from "../components/slider"
-import Subscribe from "./subscribeNews";
+import Subscribe from "../components/subscribeNews";
 
 const Main = () => {
     return (

@@ -1,10 +1,10 @@
 import React from "react";
-import ButtonsCard from "../components/buttonsCard";
+import ButtonsCard from "./buttonsCard";
 const Profile = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
-            <form style={{"marginLeft":"10%"}}>
+            <form className="w-50 m-auto minContainer">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10">
