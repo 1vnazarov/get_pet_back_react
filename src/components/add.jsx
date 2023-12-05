@@ -2,6 +2,7 @@ import React from "react";
 const Add = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
+                <h2 class="text-center text-white bg-primary m-3">Добавить объявление</h2>
             <form className="w-50 m-auto minContainer">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
