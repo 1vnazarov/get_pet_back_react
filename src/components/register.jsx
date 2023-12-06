@@ -3,7 +3,7 @@ const Register = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Регистрация</h2>
-            <form className="w-50 m-auto minContainer">
+            <form className="w-25 m-auto minContainer">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10 w-100">

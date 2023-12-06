@@ -1,5 +1,6 @@
 import React from "react";
 import logo from '../images/logo.png';
+import {Link} from 'react-router-dom';
 const Header = () => {
     return (
         <header>
@@ -15,23 +16,23 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarsExample03">
                         <ul className="navbar-nav me-auto mb-2 mb-sm-0">
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="index.html" id="gotoMain">Главная</a>
+                                <Link className="nav-link" aria-current="page" to={'/'}>Главная</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                     aria-expanded="false">Личный кабинет</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="profile.html">Личный кабинет</a></li>
-                                    <li><a className="dropdown-item" href="auth.html">Войти</a></li>
-                                    <li><a className="dropdown-item" href="register.html">Регистрация</a></li>
+                                    <li><Link className="dropdown-item" to={"/profile"}>Личный кабинет</Link></li>
+                                    <li><Link className="dropdown-item" to={"/login"}>Войти</Link></li>
+                                    <li><Link className="dropdown-item" to={"/register"}>Регистрация</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                     aria-expanded="false">Объявления</a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="add.html">Добавить объявление</a></li>
-                                    <li><a className="dropdown-item" href="search.html">Поиск по объявлению</a></li>
+                                    <li><Link className="dropdown-item" to={'/addCard'}>Добавить объявление</Link></li>
+                                    <li><Link className="dropdown-item" to={'/search'}>Поиск по объявлению</Link></li>
                                 </ul>
                             </li>
                         </ul>

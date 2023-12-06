@@ -1,7 +1,7 @@
+import { Routes, Route } from 'react-router-dom';
 import AuthPage from "./pages/auth_page";
 import Main from "./pages/main";
 import './css/style.css';
-import Profile from "./components/profile";
 import ProfilePage from "./pages/profile_page";
 import RegisterPage from "./pages/register_page";
 import AddPage from "./pages/add_page";
@@ -9,7 +9,14 @@ import SearchPage from "./pages/search_page";
 function App() {
   return (
     <div className="App">
-      <AddPage/>
+      <Routes>
+        <Route path={'/'} element = {<Main/>}/>
+        <Route path={'/profile'} element = {<ProfilePage/>}/>
+        <Route path={'/register'} element = {<RegisterPage/>}/>
+        <Route path={'/addCard'} element = {<AddPage/>}/>
+        <Route path={'/search'} element = {<SearchPage/>}/>
+        <Route path={'/login'} element = {<AuthPage/>}/>
+      </Routes>
     </div>
   );
 }
