@@ -1,10 +1,9 @@
 import React from "react";
-import pig_img from "../images/pig.jpg";
 
 const Card = (props) => {
     return (
-        <div className="card" style={{ "width": "18rem" }}>
-            <img src={pig_img} className="card-img-top" alt="pig" height="300" />
+        <div className="card m-3" style={{ "width": "18rem" }}>
+            <img src={'https://pets.сделай.site' + props.data.photos} className="card-img-top" alt="pig" height="300" />
             <div className="card-body">
                 <h5 className="card-title text-center">{props.data.name}</h5>
                 <p className="card-text">{props.data.description}</p>
