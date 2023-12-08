@@ -7,6 +7,7 @@ import CheckToken from "../modules/checkToken";
 const ProfilePage = () => {
     const navigate = useNavigate();
     if (!CheckToken()) {
+        console.log("should go to login!!!!!")
         navigate("/login");
     }
     return (        

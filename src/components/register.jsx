@@ -1,21 +1,6 @@
 import React from "react";
-
-const Register = () => {
-    const request = () => {
-        fetch("https://pets.сделай.site/api/register", { method: "POST", body: new FormData(document.getElementById("register")) })
-            .then(response => response = response.status).then(result => {
-                console.log(result);
-                if (result == 204) {
-                    document.getElementById("success").style.display = "block";
-                    document.getElementById("fail").style.display = "none";
-                }
-                else {
-                    document.getElementById("fail").style.display = "block";
-                    document.getElementById("success").style.display = "none";
-                }
-            }).catch(error => console.log('error', error));
-    }
-    
+import RegisterRequest from "../modules/registerRequest";
+const Register = () => {    
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Регистрация</h2>
@@ -61,7 +46,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-                <p className="btn btn-primary" onClick={request}>Зарегистрироваться</p>
+                <p className="btn btn-primary" onClick={() => { RegisterRequest(new FormData(document.getElementById("register"))) }}>Зарегистрироваться</p>
             </form>
             <p className='text-center text-success' id='success' style={{ display: "none" }}>Вы успешно зарегистрированы</p>
             <p className='text-center text-danger' id='fail' style={{ display: "none" }}>Ошибка регистрации</p>

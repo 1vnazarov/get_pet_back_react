@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import { Link } from 'react-router-dom';
+import CheckToken from "../modules/checkToken";
 
 const Auth = () => {
     const [user, setUser] = useState();
-    const [token, setToken] = useState();
+    const [token, setToken] = useState(CheckToken() ? localStorage.getItem("token") : null);
     const request = (e) => {
         e.preventDefault();
         const form = document.getElementById('form')
@@ -37,7 +38,7 @@ const Auth = () => {
             <h2 className="text-center text-white bg-primary m-3">Войти</h2>
             <form className="w-25 m-auto needs-validation minContainer" onSubmit={request} noValidate id='form'>
                 <div className="row mb-3">
-                    <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
+                    <label htmlFor="validationCustom01" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100">
                         <input name="email" type="email" className="form-control minWidth" id="validationCustom01" required onChange={(e) => setUser({ ...user, email: e.target.value })} />
                         <div className="invalid-feedback">
@@ -46,7 +47,7 @@ const Auth = () => {
                     </div>
                 </div>
                 <div className="row mb-3">
-                    <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
+                    <label htmlFor="validationCustom02" className="col-form-label">Пароль</label>
                     <div className="col-sm-10 w-100">
                         <input name="password" type="password" className="form-control minWidth" id="validationCustom02" required onChange={(e) => setUser({ ...user, password: e.target.value })} />
                         <div className="invalid-feedback">
@@ -59,7 +60,7 @@ const Auth = () => {
                 <Link className="btn btn-primary" to={'/register'}>На страницу регистрации</Link>
             </form>
             <p className='text-danger text-center' id='error' style={{ display: 'none' }}>Неправилный адрес электронной почты и e-mail</p>
-            <p className='text-success text-center' id='success' style={{ display: 'none' }}>Вы успешно вошли в аккаунт, ваш токен: {token}</p>
+            <p className='text-success text-center' id='success' style={{ display: token ? "block" : 'none' }}>Вы успешно вошли в аккаунт, ваш токен: {token}</p>
         </main>
     );
 }

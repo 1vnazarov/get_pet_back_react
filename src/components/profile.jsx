@@ -1,18 +1,10 @@
 import { React, useState, useEffect } from "react";
 import ButtonsCard from "./buttonsCard";
+import GetProfileRequest from "../modules/getProfileRequest";
 
 const Profile = (props) => {
-    const [profile, setProfile] = useState({ data: { user: [] } });
-    useEffect(() => requestGetProfile(profile, setProfile), []);
-    const requestGetProfile = (profile, setProfile) => {
-        fetch("https://pets.сделай.site/api/users", { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                setProfile(result);
-            })
-            .catch(error => console.log('error', error));
-    }
+    let [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
+    useEffect(() => GetProfileRequest(profile, setProfile), []);
 
     const requestUpdate = (e, key, profile, setProfile) => {
         e.preventDefault();
@@ -60,10 +52,13 @@ const Profile = (props) => {
                     </div>
                     <input type="submit" value={"Именить"} className="btn btn-primary" />
                 </form>
-                <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000)}</p>
+                <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
                 <p onClick={() => {
                     localStorage.setItem("token", null);
                     document.getElementById("success").style.color = "green";
+                    document.getElementById("name").value = ""
+                    document.getElementById("phone").value = ""
+                    document.getElementById("email").value = ""
                 }} className="btn btn-primary">Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
