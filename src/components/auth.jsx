@@ -25,7 +25,7 @@ const Auth = () => {
                 <div className="row mb-3">
                     <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password" type="password" className="form-control minWidth" id="inputPassword3" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$" required />
+                        <input name="password" type="password" className="form-control minWidth" id="inputPassword3" required />
                     </div>
                 </div>
                 <p className="btn btn-primary" onClick={request}>Войти</p>
