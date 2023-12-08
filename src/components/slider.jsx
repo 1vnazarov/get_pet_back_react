@@ -13,7 +13,7 @@ const Slider = () => {
     const [slide, setSlide] = useState({ data: { pets: [] } });
     useEffect(() => request(slide, setSlide), []);
     const request = (slide, setSlide) => {
-        fetch("https://pets.сделай.site/api/pets/slider", { method: 'GET' })
+        fetch("https://pets.сделай.site/api/pets/slider")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -25,7 +25,7 @@ const Slider = () => {
     }
 
     const slides = slide.data.pets.map((pet, index) => {
-        return <Slide data={pet} key={index} active={index == 0 ? 1 : null} />;
+        return <Slide data={pet} key={index} active={index == 0} />;
     });
 
     const indicators = slide.data.pets.map((pet, index) => {
