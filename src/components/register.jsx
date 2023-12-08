@@ -1,15 +1,21 @@
 import React from "react";
 
-const request = () => {
-    fetch("https://pets.сделай.site/api/register", {method: "POST", body: new FormData(document.getElementById("register"))})
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => console.log('error', error));
-}
-
 const Register = () => {
+    const request = () => {
+        fetch("https://pets.сделай.site/api/register", { method: "POST", body: new FormData(document.getElementById("register")) })
+            .then(response => response = response.status).then(result => {
+                console.log(result);
+                if (result == 204) {
+                    document.getElementById("success").style.display = "block";
+                    document.getElementById("fail").style.display = "none";
+                }
+                else {
+                    document.getElementById("fail").style.display = "block";
+                    document.getElementById("success").style.display = "none";
+                }
+            }).catch(error => console.log('error', error));
+    }
+    
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Регистрация</h2>
@@ -41,7 +47,7 @@ const Register = () => {
                 <div className="row mb-3">
                     <label htmlFor="confirmPassword" className="col-form-label">Подтвердите пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password_confirmation" type="password" className="form-control m-auto" id="confirmPassword" 
+                        <input name="password_confirmation" type="password" className="form-control m-auto" id="confirmPassword"
                             required />
                     </div>
                 </div>
@@ -57,6 +63,8 @@ const Register = () => {
                 </div>
                 <p className="btn btn-primary" onClick={request}>Зарегистрироваться</p>
             </form>
+            <p className='text-center text-success' id='success' style={{ display: "none" }}>Вы успешно зарегистрированы</p>
+            <p className='text-center text-danger' id='fail' style={{ display: "none" }}>Ошибка регистрации</p>
         </main>
     );
 }

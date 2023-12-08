@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+    const navigate = useNavigate();
     return (
-        <div className="card m-3" style={{ "width": "18rem" }}>
-            <img src={'https://pets.сделай.site' + props.data.photos} className="card-img-top" alt="pig" height="300" />
+        <div className={"card m-" + (props.center ? "auto" : "3")} style={{ "width": "18rem", cursor: "pointer" }} onClick={() => {
+            navigate("/card", { state: props.data.id })
+        }}>
+            <img src={'https://pets.сделай.site' + (props.data.photos || props.data.photos1)} className="card-img-top" alt="pig" height="300" />
             <div className="card-body">
                 <h5 className="card-title text-center">{props.data.kind}</h5>
                 <p className="card-text">{props.data.description}</p>
