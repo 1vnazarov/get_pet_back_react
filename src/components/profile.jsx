@@ -3,8 +3,32 @@ import ButtonsCard from "./buttonsCard";
 import GetProfileRequest from "../modules/getProfileRequest";
 
 const Profile = (props) => {
-    let [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
-    useEffect(() => GetProfileRequest(profile, setProfile), []);
+    const [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
+    
+    const [card, setCard] =  useState({ data: { orders: [] } });
+
+    const request = (card, setCard) => {
+        fetch("https://pets.сделай.site/api/users/orders", {
+            headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
+        }).then(response => response.json()).then(result => {
+            console.log(result);
+            if ('data' in result) {
+                if (result.data.orders.length > 0) {
+                    document.getElementById("userCards").style.display = 'flex'
+                    document.getElementById("noOrders").style.color = 'white'
+                    setCard(result)
+                }
+                else {
+                    document.getElementById("userCards").style.display = 'none'
+                    document.getElementById("noOrders").style.color = 'black'
+                }
+            }
+        }).catch(error => console.log('error', error));
+    }
+    useEffect(() => {
+        GetProfileRequest(profile, setProfile)
+        request(card, setCard)
+    }, []);
 
     const requestUpdate = (e, key, profile, setProfile) => {
         e.preventDefault();
@@ -17,7 +41,9 @@ const Profile = (props) => {
         }).catch(error => console.log('error', error));
     }
 
-
+    const cards = card.data.orders.map((order) => {
+        return <ButtonsCard data={order}/>;
+    });
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
@@ -63,7 +89,9 @@ const Profile = (props) => {
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
             <h2 className="text-center text-white bg-primary m-3">Ваши карточки</h2>
-            <div className="row justify-content-center">
+            <p className='text-center' id='noOrders' style={{ color: "white" }}>Нет объявлений</p>
+            <div className="row justify-content-center" id='userCards' style={{display:"none"}}>
+                {cards}
             </div>
         </main>
     );
