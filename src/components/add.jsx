@@ -25,7 +25,7 @@ const Add = () => {
 
     return (
         <main style={{ "minHeight": "70vh" }}>
-            <h2 class="text-center text-white bg-primary m-3">Добавить объявление</h2>
+            <h2 className="text-center text-white bg-primary m-3">Добавить объявление</h2>
             <form className="w-25 m-auto minContainer" id="main">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
