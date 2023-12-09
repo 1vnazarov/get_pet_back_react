@@ -32,9 +32,8 @@ const Profile = (props) => {
 
     const requestUpdate = (e, key, profile, setProfile) => {
         e.preventDefault();
-        fetch(`https://pets.сделай.site/api/users/${key}`, {
+        fetch(`https://pets.сделай.site/api/users/${key}?${key}=${document.getElementById(key).value}`, {
             method: "PATCH",
-            body: new FormData(document.getElementById(`update_${key}`)),
             headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         }).then(response => response.json()).then(result => {
                 console.log(result);
@@ -65,7 +64,7 @@ const Profile = (props) => {
                             <input name="email" type="email" value={profile.email} className="form-control m-auto" id="email" onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
                         </div>
                     </div>
-                    <input type="submit" value={"Именить"} className="btn btn-primary" />
+                    <input type="submit" value={"Изменить"} className="btn btn-primary" />
                 </form>
                 <form id="update_phone" onSubmit={(e) => {
                     requestUpdate(e, "phone", profile, setProfile)
@@ -76,7 +75,7 @@ const Profile = (props) => {
                             <input name="phone" type="tel" className="form-control m-auto" id="phone" value={profile.phone} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} />
                         </div>
                     </div>
-                    <input type="submit" value={"Именить"} className="btn btn-primary" />
+                    <input type="submit" value={"Изменить"} className="btn btn-primary" />
                 </form>
                 <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
                 <p onClick={() => {

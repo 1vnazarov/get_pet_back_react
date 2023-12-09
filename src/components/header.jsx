@@ -1,7 +1,8 @@
 import React from "react";
 import logo from '../images/logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 const Header = () => {
+    const navigate = useNavigate()
     return (
         <header>
             <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
@@ -45,8 +46,11 @@ const Header = () => {
                                 <option value="Сова"></option>
                             </datalist>
                             <input className="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск"
-                                list="pets" />
-                            <button className="btn btn-outline-light" type="submit">Поиск</button>
+                                list="pets" id='search' />
+                            <button className="btn btn-outline-light" onClick={() => {
+                                localStorage.setItem("query", document.getElementById('search').value)
+                                navigate('/search')
+                            }}>Поиск</button>
                         </form>
                     </div>
                 </div>
