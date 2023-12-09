@@ -30,19 +30,19 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10 w-100">
-                        <input className="form-control" id="name" name="name" value={profile.name} required />
+                        <input className="form-control" id="name" name="name" defaultValue={profile.name} required />
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="phone" className="col-form-label">Телефон</label>
                     <div className="col-sm-10 w-100">
-                        <input type="tel" className="form-control" id="phone" value={profile.phone} required />
+                        <input type="tel" className="form-control" id="phone" defaultValue={profile.phone} required />
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100 m-auto">
-                        <input name="email" type="email" className="form-control" id="email" value={profile.email} required />
+                        <input name="email" type="email" className="form-control" id="email" defaultValue={profile.email} required />
                     </div>
                 </div>
                 <details>
