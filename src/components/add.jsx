@@ -62,7 +62,7 @@ const Add = () => {
                     {
                     //<p className="btn btn-primary" onClick={() => { RegisterRequest(new FormData(document.getElementById("main"))) }}>Зарегистрироваться</p>
                     }
-                    <h2 className="text-center bg-primary mt-3" style={{ "marginRight": "10%" }}>ㅤ</h2>
+                    <h2 className="text-center text-white bg-primary mt-3">ㅤ</h2>
                     <summary className="btn btn-primary" style={{ "listStyleType": "none" }}>Регистрация</summary>
                 </details>
                 <div className="row mb-3">
