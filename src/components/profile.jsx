@@ -15,12 +15,12 @@ const Profile = (props) => {
             if ('data' in result) {
                 if (result.data.orders.length > 0) {
                     document.getElementById("userCards").style.display = 'flex'
-                    document.getElementById("noOrders").style.color = 'white'
+                    document.getElementById("noOrders").style.display = 'none'
                     setCard(result)
                 }
                 else {
                     document.getElementById("userCards").style.display = 'none'
-                    document.getElementById("noOrders").style.color = 'black'
+                    document.getElementById("noOrders").style.display = 'block'
                 }
             }
         }).catch(error => console.log('error', error));
@@ -89,7 +89,7 @@ const Profile = (props) => {
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
             <h2 className="text-center text-white bg-primary m-3">Ваши карточки</h2>
-            <p className='text-center' id='noOrders' style={{ color: "white" }}>Нет объявлений</p>
+            <p className='text-center' id='noOrders' style={{ display: 'none' }}>Нет объявлений</p>
             <div className="row justify-content-center" id='userCards' style={{display:"none"}}>
                 {cards}
             </div>

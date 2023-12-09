@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonsCard = (props) => {
     return (
-        <div className="card" style={{ "width": "18rem" }}>
+        <div className="card m-3" style={{ "width": "18rem" }}>
         <img src={'https://pets.сделай.site' + (props.data.photos || props.data.photos1)} className="card-img-top" alt="pig" height="300" />
             <div className="card-body">
                 <h5 className="card-title text-center">{props.data.kind}</h5>
