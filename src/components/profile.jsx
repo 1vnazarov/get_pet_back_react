@@ -84,6 +84,8 @@ const Profile = (props) => {
                     document.getElementById("name").value = ""
                     document.getElementById("phone").value = ""
                     document.getElementById("email").value = ""
+                    document.getElementById("userCards").style.display = 'none'
+                    document.getElementById("noOrders").style.display = 'block'
                 }} className="btn btn-primary">Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
