@@ -26,7 +26,7 @@ const Add = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Добавить объявление</h2>
-            <form className="w-25 m-auto minContainer" id="main">
+            <form className="w-25 m-auto minContainer" id="main" enctype="multipart/form-data">
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10 w-100">
@@ -36,7 +36,7 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="phone" className="col-form-label">Телефон</label>
                     <div className="col-sm-10 w-100">
-                        <input type="tel" className="form-control" id="phone" defaultValue={profile.phone} required />
+                        <input type="tel" className="form-control" id="phone" name='phone' defaultValue={profile.phone} required />
                     </div>
                 </div>
                 <div className="row mb-3">
@@ -68,18 +68,26 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="photo1" className="col-form-label">Изображение 1</label>
                     <div className="col-sm-10 w-100">
-                        <input className="form-control" id="photo1" type="file" accept="image/*" name="photo1" required />
+                        <input className="form-control" id="photo1" type="file" accept="image/*" name="photos1" required />
                     </div>
                     <label htmlFor="photo2" className="col-form-label">Изображение 2</label>
                     <div className="col-sm-10 w-100">
-                        <input className="form-control" id="photo2" type="file" accept="image/*" name="photo2" />
+                        <input className="form-control" id="photo2" type="file" accept="image/*" name="photos2" />
                     </div>
                     <label htmlFor="photo3" className="col-form-label">Изображение 3</label>
                     <div className="col-sm-10 w-100">
-                        <input className="form-control" id="photo3" type="file" accept="image/*" name="photo3" />
+                        <input className="form-control" id="photo3" type="file" accept="image/*" name="photos3" />
                     </div>
                 </div>
                 <div className="row mb-3">
+                <label htmlFor="kind" className="col-form-label">Вид</label>
+                    <div className="col-sm-10 w-100">
+                        <input className="form-control" id="kind" name="kind" />
+                    </div>
+                    <label htmlFor="district" className="col-form-label">Район</label>
+                    <div className="col-sm-10 w-100">
+                        <input className="form-control" id="district" name="district" />
+                    </div>
                     <label htmlFor="cleymo" className="col-form-label">Клеймо</label>
                     <div className="col-sm-10 w-100">
                         <input className="form-control" id="cleymo" name="mark" />
@@ -90,14 +98,14 @@ const Add = () => {
                     </div>
                 </div>
                 <div className="form-check mt-3 mb-3">
-                    <input className="form-check-input" type="checkbox" id="gridCheck1" name="confirmation" required />
+                    <input className="form-check-input" type="checkbox" id="gridCheck1" name="confirm" required />
                     <label className="form-check-label" htmlFor="gridCheck1">
                         Согласие на обработку персональных данных
                     </label>
                 </div>
                 <p className="btn btn-primary" onClick={() => {
                     RegisterRequest(new FormData(document.getElementById("main"))) // Попробовать зарегаться
-
+                    request()
                 }}>Добавить</p>
             </form>
             <p className='text-center text-success' id='success' style={{ display: "none" }}>Вы успешно зарегистрированы</p>
