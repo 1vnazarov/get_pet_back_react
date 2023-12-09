@@ -1,8 +1,11 @@
-import React from "react";
+import {React,  useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
     const navigate = useNavigate();
+    useEffect(() => {
+        if (!props.data.date) document.getElementById("date").style.display = 'none'
+    })
     return (
         <div className={"card m-" + (props.center ? "auto" : "3")} style={{ "width": "18rem", cursor: "pointer" }} onClick={() => {
             navigate("/card", { state: props.data.id })
@@ -18,7 +21,7 @@ const Card = (props) => {
                 <li className="list-group-item">Номер телефона нашедшего: {props.data.phone}</li>
                 <li className="list-group-item">Район: {props.data.district}</li>
                 <li className="list-group-item">Номер чипа: {props.data.mark}</li>
-                <li className="list-group-item">Дата: {props.data.date}</li>
+                <li className="list-group-item" id="date">Дата: {props.data.date}</li>
             </ul>
         </div>
     );

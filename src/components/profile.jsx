@@ -10,8 +10,8 @@ const Profile = (props) => {
         e.preventDefault();
         fetch(`https://pets.сделай.site/api/users/${key}`, {
             method: "PATCH",
-            body: profile[key],
-            headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+            body: new FormData(document.getElementById(`update_${key}`)),
+            headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         }).then(response => response.json()).then(result => {
                 console.log(result);
         }).catch(error => console.log('error', error));

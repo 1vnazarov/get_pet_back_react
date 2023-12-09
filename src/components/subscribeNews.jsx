@@ -2,8 +2,10 @@ import React from "react";
 
 const request = () => {
     fetch("https://pets.сделай.site/api/subscription", { method: "POST", body: new FormData(document.getElementById("subscribe")) })
-        .then(response => response.json())
+        .then(response => response.status)
         .then(result => {
+            if (result == 204) document.getElementById("success").style.color = 'green';
+            else document.getElementById("success").style.color = 'red';
             console.log(result);
         })
         .catch(error => console.log('error', error));
@@ -21,6 +23,8 @@ const Subscribe = () => {
                 </div>
                 <p onClick={request} className="btn btn-primary">Подписаться</p>
             </form>
+            <p className='text-center' id='success' style={{ color:"white" }}>Спасибо за подписку</p>
+            <p className='text-center' id='fail' style={{ color:"white" }}>Не удалось подписаться</p>
         </div>
     );
 }

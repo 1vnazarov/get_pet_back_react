@@ -75,7 +75,7 @@ const Add = () => {
                         <input className="form-control" id="photo2" type="file" accept="image/*" name="photo2" />
                     </div>
                     <label htmlFor="photo3" className="col-form-label">Изображение 3</label>
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 w-100">
                         <input className="form-control" id="photo3" type="file" accept="image/*" name="photo3" />
                     </div>
                 </div>
