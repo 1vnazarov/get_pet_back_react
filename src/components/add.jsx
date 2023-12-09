@@ -6,12 +6,12 @@ const Add = () => {
     const [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "" }] } });
     useEffect(() => GetProfileRequest(profile, setProfile), []);
 
-    const request = () => {
-        fetch("https://pets.сделай.site/api/pets", {method: "POST", body: new FormData(document.getElementById("main"))})
+    const request = (data) => {
+        fetch("https://pets.сделай.site/api/pets", { method: "POST", body: data })
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                if (result.data.status == 'ok') {
+                if (result.data.status == 'OK') {
                     document.getElementById('successAdd').style.display = 'block';
                     document.getElementById('failAdd').style.display = 'none';
                 }
@@ -22,7 +22,6 @@ const Add = () => {
             })
             .catch(error => console.log('error', error));
     }
-
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Добавить объявление</h2>
@@ -45,22 +44,22 @@ const Add = () => {
                         <input name="email" type="email" className="form-control" id="email" defaultValue={profile.email} required />
                     </div>
                 </div>
-                <details>
+                <details id='register'>
                     <h2 className="text-center text-white bg-primary mt-3">Регистрация</h2>
-                        <div className="row mb-3">
-                            <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
-                            <div className="col-sm-10 w-100">
-                                <input type="password" className="form-control" id="inputPassword3" name="password" />
-                            </div>
+                    <div className="row mb-3">
+                        <label htmlFor="password" className="col-form-label">Пароль</label>
+                        <div className="col-sm-10 w-100">
+                            <input type="password" className="form-control" id="password" name="password" />
                         </div>
-                        <div className="row mb-3">
-                            <label htmlFor="confirmPassword" className="col-form-label">Подтвердите пароль</label>
-                            <div className="col-sm-10 w-100">
-                                <input type="password" className="form-control" id="confirmPassword" name="password_confirmation" />
-                            </div>
+                    </div>
+                    <div className="row mb-3">
+                        <label htmlFor="password_confirmation" className="col-form-label">Подтвердите пароль</label>
+                        <div className="col-sm-10 w-100">
+                            <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" />
                         </div>
+                    </div>
                     {
-                    //<p className="btn btn-primary" onClick={() => { RegisterRequest(new FormData(document.getElementById("main"))) }}>Зарегистрироваться</p>
+                        //<p className="btn btn-primary" onClick={() => { RegisterRequest(new FormData(document.getElementById("main"))) }}>Зарегистрироваться</p>
                     }
                     <h2 className="text-center text-white bg-primary mt-3">ㅤ</h2>
                     <summary className="btn btn-primary" style={{ "listStyleType": "none" }}>Регистрация</summary>
@@ -80,7 +79,7 @@ const Add = () => {
                     </div>
                 </div>
                 <div className="row mb-3">
-                <label htmlFor="kind" className="col-form-label">Вид</label>
+                    <label htmlFor="kind" className="col-form-label">Вид</label>
                     <div className="col-sm-10 w-100">
                         <input className="form-control" id="kind" name="kind" />
                     </div>
@@ -104,8 +103,13 @@ const Add = () => {
                     </label>
                 </div>
                 <p className="btn btn-primary" onClick={() => {
-                    RegisterRequest(new FormData(document.getElementById("main"))) // Попробовать зарегаться
-                    request()
+                    const data = new FormData(document.getElementById("main"))
+                    RegisterRequest(data) // Попробовать зарегаться
+                    if (!document.getElementById('register').hasAttribute('open')) {
+                        data.delete('password')
+                        data.delete('password_confirmation')
+                    }
+                    request(data)
                 }}>Добавить</p>
             </form>
             <p className='text-center text-success' id='success' style={{ display: "none" }}>Вы успешно зарегистрированы</p>
