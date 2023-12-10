@@ -1,12 +1,11 @@
 import { React, useState, useEffect } from "react";
 import ButtonsCard from "./buttonsCard";
 import GetProfileRequest from "../modules/getProfileRequest";
+import { validateEmail, validatePhone } from "../modules/validate";
 
-const Profile = (props) => {
+const Profile = () => {
     const [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
-    
     const [card, setCard] =  useState({ data: { orders: [] } });
-
     const request = (card, setCard) => {
         fetch("https://pets.сделай.site/api/users/orders", {
             headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
@@ -30,19 +29,53 @@ const Profile = (props) => {
         request(card, setCard)
     }, []);
 
-    const requestUpdate = (e, key, profile, setProfile) => {
-        e.preventDefault();
+    const requestUpdate = (key) => {
         fetch(`https://pets.сделай.site/api/users/${key}?${key}=${document.getElementById(key).value}`, {
             method: "PATCH",
             headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         }).then(response => response.json()).then(result => {
-                console.log(result);
+            console.log(result);
+            if ('data' in result) {
+                document.getElementById(`success_${key}`).style.display = 'block'
+            }
         }).catch(error => console.log('error', error));
     }
 
     const cards = card.data.orders.map((order) => {
         return <ButtonsCard data={order}/>;
     });
+
+    const [errors, setErrors] = useState({phone: "", email: ""});
+    const [validations, setValidations] = useState({phone: false, email: false});
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        setProfile((prevData) => ({...prevData, [name]: value}));
+
+        let error = "";
+        switch (name) {
+            case "phone": error = validatePhone(value); break;
+            case "email": error = validateEmail(value); break;
+        }
+        setValidations((prev) => ({ ...prev, [name]: !error }));
+        setErrors((prevErrors) => ({...prevErrors, [name]: error}));
+    }
+
+    const handleSubmit = (key) => {
+        document.getElementById('success_phone').style.display = 'none'
+        document.getElementById('success_email').style.display = 'none'
+        const phoneError = validatePhone(profile.phone);
+        const emailError = validateEmail(profile.email);
+        if (phoneError || emailError) {
+            setErrors({phone: phoneError, email: emailError});
+        } else {
+            // Все данные валидны, выполняем запрос
+            requestUpdate(key)
+        }
+    };
+
+
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
@@ -55,27 +88,25 @@ const Profile = (props) => {
                         </div>
                     </div>
                 </form>
-                <form id="update_email" onSubmit={(e) => {
-                    requestUpdate(e, "email", profile, setProfile)
-                }}>
+                <form>
                     <div className="row mb-3">
                         <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                         <div className="col-sm-10 w-100">
-                            <input name="email" type="email" value={profile.email} className="form-control m-auto" id="email" onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
+                            <input name="email" type="email" value={profile.email} className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} id="email" onChange={handleInputChange} />
+                            <span className="text-danger">{errors.email}</span>
+                            <p className='text-center text-success' id='success_email' style={{ display: "none" }}>Почта изменена</p>
+                            <p className="btn btn-primary mt-3" onClick={() => handleSubmit("email")}>Изменить</p>
                         </div>
                     </div>
-                    <input type="submit" value={"Изменить"} className="btn btn-primary" />
-                </form>
-                <form id="update_phone" onSubmit={(e) => {
-                    requestUpdate(e, "phone", profile, setProfile)
-                }}>
                     <div className="row mb-3">
                         <label htmlFor="tel" className="col-form-label">Телефон</label>
                         <div className="col-sm-10 w-100">
-                            <input name="phone" type="tel" className="form-control m-auto" id="phone" value={profile.phone} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} />
+                            <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : ""}`} id="phone" value={profile.phone} onChange={handleInputChange} />
+                            <span className="text-danger">{errors.phone}</span>
+                            <p className='text-center text-success' id='success_phone' style={{ display: "none" }}>Телефон изменен</p>
+                            <p className="btn btn-primary mt-3" onClick={() => handleSubmit("phone")}>Изменить</p>
                         </div>
                     </div>
-                    <input type="submit" value={"Изменить"} className="btn btn-primary" />
                 </form>
                 <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
                 <p onClick={() => {
@@ -84,8 +115,12 @@ const Profile = (props) => {
                     document.getElementById("name").value = ""
                     document.getElementById("phone").value = ""
                     document.getElementById("email").value = ""
+                    document.getElementById("phone").classList.remove('is-valid')
+                    document.getElementById("email").classList.remove('is-valid')
                     document.getElementById("userCards").style.display = 'none'
                     document.getElementById("noOrders").style.display = 'block'
+                    document.getElementById("success_email").style.display = 'none'
+                    document.getElementById("success_phone").style.display = 'none'
                 }} className="btn btn-primary">Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
