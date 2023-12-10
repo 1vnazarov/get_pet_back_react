@@ -30,7 +30,7 @@ const Profile = () => {
     }, []);
 
     const requestUpdate = (key) => {
-        fetch(`https://pets.сделай.site/api/users/${key}?${key}=${document.getElementById(key).value}`, {
+        fetch(`https://pets.сделай.site/api/users/${key}?${key}=${profile[key]}`, {
             method: "PATCH",
             headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         }).then(response => response.json()).then(result => {
