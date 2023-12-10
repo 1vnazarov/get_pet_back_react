@@ -9,7 +9,7 @@ const Main = () => {
     const [card, setCard] = useState({ data: { orders: [] } });
     useEffect(() => request(card, setCard), []);
     const request = (card, setCard) => {
-        fetch("https://pets.сделай.site/api/pets", {method: "GET"})
+        fetch("https://pets.сделай.site/api/pets")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
