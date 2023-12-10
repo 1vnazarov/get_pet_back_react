@@ -48,11 +48,17 @@ const validateConfirm = (value) => {
     return error;
 }
 
+const validateFile = (value) => {
+    const error = value.length == 0 ? "Необходимо выбрать файл" : ""
+    return error
+}
+
 export {
     validateName,
     validatePhone,
     validateEmail,
     validatePassword,
     validatePasswordConfirmation,
-    validateConfirm
+    validateConfirm,
+    validateFile
 }
