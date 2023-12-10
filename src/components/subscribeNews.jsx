@@ -15,6 +15,8 @@ const Subscribe = () => {
     }
 
     const handleSubmit = () => {
+        document.getElementById("fail").style.color = 'white';
+        document.getElementById("success").style.color = 'white';
         const emailError = validateEmail(formData.email);
         if (emailError) {
             setErrors({email: emailError});
