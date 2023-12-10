@@ -20,61 +20,69 @@ const Register = () => {
         confirm: "",
     });
 
+    const [validations, setValidations] = useState({
+        name: false,
+        phone: false,
+        email: false,
+        password: false,
+        password_confirmation: false,
+        confirm: false,
+    });
+
     const validateName = (value) => {
-        if (!value.trim()) {
-            return "Поле 'Имя' обязательно для заполнения";
-        }
-        if (!/^[а-яА-ЯёЁ\s-]+$/.test(value)) {
-            return "Допустимые символы - кириллица, пробел, дефис";
-        }
-        return "";
+        const error = !value.trim()
+            ? "Поле 'Имя' обязательно для заполнения"
+            : !/^[а-яА-ЯёЁ\s-]+$/.test(value)
+                ? "Допустимые символы - кириллица, пробел, дефис"
+                : "";
+        setValidations((prev) => ({ ...prev, name: !error }));
+        return error;
     };
 
     const validatePhone = (value) => {
-        if (!value.trim()) {
-            return "Поле 'Телефон' обязательно для заполнения";
-        }
-        if (!/^\+?\d+$/.test(value)) {
-            return "Только цифры и знак +";
-        }
-        return "";
+        const error = !value.trim()
+            ? "Поле 'Телефон' обязательно для заполнения"
+            : !/^\+?\d+$/.test(value)
+                ? "Только цифры и знак +"
+                : "";
+        setValidations((prev) => ({ ...prev, phone: !error }));
+        return error;
     };
 
     const validateEmail = (value) => {
-        if (!value.trim()) {
-            return "Поле 'Эл. почта' обязательно для заполнения";
-        }
-        if (!/^\S+@\S+\.\S+$/.test(value)) {
-            return "Неверный формат email";
-        }
-        return "";
+        const error = !value.trim()
+            ? "Поле 'Эл. почта' обязательно для заполнения"
+            : !/^\S+@\S+\.\S+$/.test(value)
+                ? "Неверный формат email"
+                : "";
+        setValidations((prev) => ({ ...prev, email: !error }));
+        return error;
     };
 
     const validatePassword = (value) => {
-        if (!value.trim()) {
-            return "Поле 'Пароль' обязательно для заполнения";
-        }
-        if (value.length < 7 || !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(value)) {
-            return "Пароль должен содержать не менее 7 символов, 1 цифру, 1 строчную и 1 заглавную букву";
-        }
-        return "";
+        const error = !value.trim()
+            ? "Поле 'Пароль' обязательно для заполнения"
+            : value.length < 7 || !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(value)
+                ? "Пароль должен содержать только латиницу, не менее 7 символов, 1 цифру, 1 строчную и 1 заглавную букву"
+                : "";
+        setValidations((prev) => ({ ...prev, password: !error }));
+        return error;
     };
 
     const validatePasswordConfirmation = (value) => {
-        if (!value.trim()) {
-            return "Поле 'Подтвердите пароль' обязательно для заполнения";
-        }
-        if (value !== formData.password) {
-            return "Пароли не совпадают";
-        }
-        return "";
+        const error = !value.trim()
+            ? "Поле 'Подтвердите пароль' обязательно для заполнения"
+            : value !== formData.password
+                ? "Пароли не совпадают"
+                : "";
+        setValidations((prev) => ({ ...prev, password_confirmation: !error }));
+        return error;
     };
 
     const validateConfirm = (value) => {
-        if (!value) {
-            return "Необходимо согласие на обработку персональных данных";
-        }
-        return "";
+        const error = !value ? "Необходимо согласие на обработку персональных данных" : "";
+        setValidations((prev) => ({ ...prev, confirm: !error }));
+        return error;
     };
 
     const handleInputChange = (e) => {
@@ -86,9 +94,24 @@ const Register = () => {
             [name]: inputValue,
         }));
 
+        const error =
+            name === "name"
+                ? validateName(inputValue)
+                : name === "phone"
+                    ? validatePhone(inputValue)
+                    : name === "email"
+                        ? validateEmail(inputValue)
+                        : name === "password"
+                            ? validatePassword(inputValue)
+                            : name === "password_confirmation"
+                                ? validatePasswordConfirmation(inputValue)
+                                : name === "confirm"
+                                    ? validateConfirm(inputValue)
+                                    : "";
+
         setErrors((prevErrors) => ({
             ...prevErrors,
-            [name]: "",
+            [name]: error,
         }));
     };
 
@@ -131,35 +154,41 @@ const Register = () => {
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10 w-100">
-                        <input name="name" className="form-control m-auto" id="name" required onChange={handleInputChange} />
+                        <input
+                            name="name"
+                            className={`form-control m-auto ${validations.name ? "is-valid" : ""}`}
+                            id="name"
+                            required
+                            onChange={handleInputChange}
+                        />
                         <span className="text-danger">{errors.name}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="phone" className="col-form-label">Телефон</label>
                     <div className="col-sm-10 w-100">
-                        <input name="phone" type="tel" className="form-control m-auto" id="phone" required onChange={handleInputChange} />
+                        <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : ""}`} id="phone" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.phone}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100">
-                        <input name="email" type="email" className="form-control m-auto" id="inputEmail3" required onChange={handleInputChange} />
+                        <input name="email" type="email" className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} id="inputEmail3" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.email}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password" type="password" className="form-control m-auto" id="inputPassword3" required onChange={handleInputChange} />
+                        <input name="password" type="password" className={`form-control m-auto ${validations.password ? "is-valid" : ""}`} id="inputPassword3" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.password}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="confirmPassword" className="col-form-label">Подтвердите пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password_confirmation" type="password" className="form-control m-auto" id="confirmPassword"
+                        <input name="password_confirmation" type="password" className={`form-control m-auto ${validations.password_confirmation ? "is-valid" : ""}`} id="confirmPassword"
                             required onChange={handleInputChange} />
                         <span className="text-danger">{errors.password_confirmation}</span>
                     </div>
@@ -167,7 +196,7 @@ const Register = () => {
                 <div className="row mb-3">
                     <div className="col-sm-10 w-100">
                         <div className="form-check m-auto">
-                            <input name="confirm" className="form-check-input" type="checkbox" id="gridCheck1" required onChange={handleInputChange} />
+                            <input name="confirm" className={`form-check-input ${validations.confirm ? "is-valid" : ""}`} type="checkbox" id="gridCheck1" required onChange={handleInputChange} />
                             <label className="form-check-label" htmlFor="gridCheck1">
                                 Согласие на обработку персональных данных
                             </label>
