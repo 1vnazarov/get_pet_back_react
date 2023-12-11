@@ -18,8 +18,8 @@ const Slider = () => {
             .then(result => {
                 console.log(result);
                 setSlide(result);
-                document.getElementById("carouselExampleIndicators").style.display = "flex";
-                document.getElementById("loader").style.display = "none";
+                if (document.getElementById("carouselExampleIndicators")) document.getElementById("carouselExampleIndicators").style.display = "flex";
+                if (document.getElementById("loader")) document.getElementById("loader").style.display = "none";
             })
             .catch(error => console.log('error', error));
     }

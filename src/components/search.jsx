@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import Pagination from './pagination'
+import CardsList from "./paginator";
 import { useLocation } from "react-router-dom";
 
 const Search = () => {
     const location = useLocation();
-    const query = location.state?.query;
+    const query = location.state?.query || "";
 
     const [card, setCard] = useState({ data: { order: [] } });
 
     useEffect(() => {
-        if (!query) return; // Если запроса нет, не продолжаем
-
         const request = () => {
             console.log(`https://pets.сделай.site/api/search?query=${query}`);
             fetch(`https://pets.сделай.site/api/search?query=${query}`)
@@ -25,6 +23,10 @@ const Search = () => {
                 .catch(error => console.log('error', error));
         };
         request();
+        if (card.data.order.length > 0) {
+            document.getElementById('cards').style.display = 'block'
+            document.getElementById('res').style.display = 'block'
+        }
     }, [query]);
     return (
         <main style={{ "minHeight": "70vh" }}>
@@ -45,8 +47,8 @@ const Search = () => {
                 <p className="btn btn-primary">Найти</p>
             </form>
             <p className="text-center" style={{ display: "none" }} id='res'>Результаты поиска</p>
-            <div id='card' style={{ display: "none" }}>
-                <Pagination data={card.data.order} size={6} />
+            <div id='cards' style={{ display: "none" }}>
+                <CardsList data={card.data.order} itemsPerPage={6} />
             </div>
         </main>
     );
