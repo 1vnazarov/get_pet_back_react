@@ -106,7 +106,7 @@ const Register = () => {
                     <div className="col-sm-10 w-100">
                         <input
                             name="name"
-                            className={`form-control m-auto ${validations.name ? "is-valid" : ""}`}
+                            className={`form-control m-auto ${validations.name ? "is-valid" : errors.name ? "is-invalid" : ""}`}
                             id="name"
                             required
                             onChange={handleInputChange}
@@ -117,28 +117,28 @@ const Register = () => {
                 <div className="row mb-3">
                     <label htmlFor="phone" className="col-form-label">Телефон</label>
                     <div className="col-sm-10 w-100">
-                        <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : ""}`} id="phone" required onChange={handleInputChange} />
+                        <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : errors.phone ? "is-invalid" : ""}`} id="phone" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.phone}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100">
-                        <input name="email" type="email" className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} id="inputEmail3" required onChange={handleInputChange} />
+                        <input name="email" type="email" className={`form-control m-auto ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} id="inputEmail3" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.email}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputPassword3" className="col-form-label">Пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password" type="password" className={`form-control m-auto ${validations.password ? "is-valid" : ""}`} id="inputPassword3" required onChange={handleInputChange} />
+                        <input name="password" type="password" className={`form-control m-auto ${validations.password ? "is-valid" : errors.password ? "is-invalid" : ""}`} id="inputPassword3" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.password}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="confirmPassword" className="col-form-label">Подтвердите пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password_confirmation" type="password" className={`form-control m-auto ${validations.password_confirmation ? "is-valid" : ""}`} id="confirmPassword"
+                        <input name="password_confirmation" type="password" className={`form-control m-auto ${validations.password_confirmation ? "is-valid" : errors.password_confirmation ? "is-invalid" : ""}`} id="confirmPassword"
                             required onChange={handleInputChange} />
                         <span className="text-danger">{errors.password_confirmation}</span>
                     </div>

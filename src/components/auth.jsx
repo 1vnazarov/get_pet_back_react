@@ -69,14 +69,14 @@ const Auth = () => {
                 <div className="row mb-3">
                     <label htmlFor="validationCustom01" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100">
-                        <input name="email" type="email" className={`form-control minWidth ${validations.email ? "is-valid" : ""}`} id="validationCustom01" required onChange={handleInputChange} />
+                        <input name="email" type="email" className={`form-control minWidth ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} id="validationCustom01" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.email}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="validationCustom02" className="col-form-label">Пароль</label>
                     <div className="col-sm-10 w-100">
-                        <input name="password" type="password" className={`form-control minWidth ${validations.password ? "is-valid" : ""}`} id="validationCustom02" required onChange={handleInputChange} />
+                        <input name="password" type="password" className={`form-control minWidth ${validations.password ? "is-valid" : errors.password ? "is-invalid" : ""}`} id="validationCustom02" required onChange={handleInputChange} />
                         <span className="text-danger">{errors.password}</span>
                     </div>
                 </div>

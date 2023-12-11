@@ -92,7 +92,7 @@ const Profile = () => {
                     <div className="row mb-3">
                         <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                         <div className="col-sm-10 w-100">
-                            <input name="email" type="email" value={profile.email} className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} id="email" onChange={handleInputChange} />
+                            <input name="email" type="email" value={profile.email} className={`form-control m-auto ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} id="email" onChange={handleInputChange} />
                             <span className="text-danger">{errors.email}</span>
                             <p className='text-center text-success' id='success_email' style={{ display: "none" }}>Почта изменена</p>
                             <p className="btn btn-primary mt-3" onClick={() => handleSubmit("email")}>Изменить</p>
@@ -101,7 +101,7 @@ const Profile = () => {
                     <div className="row mb-3">
                         <label htmlFor="tel" className="col-form-label">Телефон</label>
                         <div className="col-sm-10 w-100">
-                            <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : ""}`} id="phone" value={profile.phone} onChange={handleInputChange} />
+                            <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : errors.phone ? "is-invalid" : ""}`} id="phone" value={profile.phone} onChange={handleInputChange} />
                             <span className="text-danger">{errors.phone}</span>
                             <p className='text-center text-success' id='success_phone' style={{ display: "none" }}>Телефон изменен</p>
                             <p className="btn btn-primary mt-3" onClick={() => handleSubmit("phone")}>Изменить</p>

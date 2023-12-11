@@ -46,7 +46,7 @@ const Subscribe = () => {
             <form id="subscribe" className="w-50 m-auto p-3" style={{ "minWidth": "300px" }}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Введите адрес электронной почты</label>
-                    <input type="email" name="email" className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} onChange={handleInputChange} id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input type="email" name="email" className={`form-control m-auto ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} onChange={handleInputChange} id="exampleInputEmail1" aria-describedby="emailHelp" />
                     <span className="text-danger">{errors.email}</span>
                     <div id="emailHelp" className="form-text">Мы не делимся Вашим e-mail ни с кем.</div>
                 </div>

@@ -174,21 +174,21 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="name" className="col-form-label">Имя</label>
                     <div className="col-sm-10 w-100">
-                        <input className={`form-control m-auto ${validations.name ? "is-valid" : ""}`} onChange={handleInputChange} id="name" name="name" defaultValue={profile.name} required />
+                        <input className={`form-control m-auto ${validations.name ? "is-valid" : errors.name ? "is-invalid" : ""}`} onChange={handleInputChange} id="name" name="name" defaultValue={profile.name} required />
                         <span className="text-danger">{errors.name}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="phone" className="col-form-label">Телефон</label>
                     <div className="col-sm-10 w-100">
-                        <input type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : ""}`} onChange={handleInputChange} id="phone" name='phone' defaultValue={profile.phone} required />
+                        <input type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : errors.phone ? "is-invalid" : ""}`} onChange={handleInputChange} id="phone" name='phone' defaultValue={profile.phone} required />
                         <span className="text-danger">{errors.phone}</span>
                     </div>
                 </div>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-form-label">Эл. почта</label>
                     <div className="col-sm-10 w-100 m-auto">
-                        <input name="email" type="email" className={`form-control m-auto ${validations.email ? "is-valid" : ""}`} onChange={handleInputChange} id="email" defaultValue={profile.email} required />
+                        <input name="email" type="email" className={`form-control m-auto ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} onChange={handleInputChange} id="email" defaultValue={profile.email} required />
                         <span className="text-danger">{errors.email}</span>
                     </div>
                 </div>
@@ -197,14 +197,14 @@ const Add = () => {
                     <div className="row mb-3">
                         <label htmlFor="password" className="col-form-label">Пароль</label>
                         <div className="col-sm-10 w-100">
-                            <input type="password" className={`form-control m-auto ${validations.password ? "is-valid" : ""}`} onChange={handleInputChange} id="password" name="password" />
+                            <input type="password" className={`form-control m-auto ${validations.password ? "is-valid" : errors.password ? "is-invalid" : ""}`} onChange={handleInputChange} id="password" name="password" />
                             <span className="text-danger">{errors.password}</span>
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label htmlFor="password_confirmation" className="col-form-label">Подтвердите пароль</label>
                         <div className="col-sm-10 w-100">
-                            <input type="password" className={`form-control m-auto ${validations.password_confirmation ? "is-valid" : ""}`} onChange={handleInputChange} id="password_confirmation" name="password_confirmation" />
+                            <input type="password" className={`form-control m-auto ${validations.password_confirmation ? "is-valid" : errors.password_confirmation ? "is-invalid" : ""}`} onChange={handleInputChange} id="password_confirmation" name="password_confirmation" />
                             <span className="text-danger">{errors.password_confirmation}</span>
                         </div>
                     </div>
@@ -214,7 +214,7 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="photo1s" className="col-form-label">Изображение 1</label>
                     <div className="col-sm-10 w-100">
-                        <input className={`form-control m-auto ${validations.photos1 ? "is-valid" : ""}`} onChange={handleInputChange} id="photos1" type="file" accept="image/*" name="photos1" required />
+                        <input className={`form-control m-auto ${validations.photos1 ? "is-valid" : errors.photos1 ? "is-invalid" : ""}`} onChange={handleInputChange} id="photos1" type="file" accept="image/*" name="photos1" required />
                         <span className="text-danger">{errors.photos1}</span>
                     </div>
                     <label htmlFor="photo2" className="col-form-label">Изображение 2</label>
@@ -229,12 +229,12 @@ const Add = () => {
                 <div className="row mb-3">
                     <label htmlFor="kind" className="col-form-label">Вид</label>
                     <div className="col-sm-10 w-100">
-                        <input className={`form-control m-auto ${validations.kind ? "is-valid" : ""}`} onChange={handleInputChange} id="kind" name="kind"  />
+                        <input className={`form-control m-auto ${validations.kind ? "is-valid" : errors.kind ? "is-invalid" : ""}`} onChange={handleInputChange} id="kind" name="kind"  />
                         <span className="text-danger">{errors.kind}</span>
                     </div>
                     <label htmlFor="district" className="col-form-label">Район</label>
                     <div className="col-sm-10 w-100">
-                        <input className={`form-control m-auto ${validations.district ? "is-valid" : ""}`} onChange={handleInputChange} id="district" name="district" />
+                        <input className={`form-control m-auto ${validations.district ? "is-valid" : errors.district ? "is-invalid" : ""}`} onChange={handleInputChange} id="district" name="district" />
                         <span className="text-danger">{errors.district}</span>
                     </div>
                     <label htmlFor="cleymo" className="col-form-label">Клеймо</label>
@@ -244,7 +244,7 @@ const Add = () => {
                     </div>
                     <label htmlFor="desc" className="col-form-label">Описание</label>
                     <div className="col-sm-10 w-100">
-                        <input className={`form-control m-auto ${validations.description ? "is-valid" : ""}`} onChange={handleInputChange} id="desc" name="description" />
+                        <input className={`form-control m-auto ${validations.description ? "is-valid" : errors.description ? "is-invalid" : ""}`} onChange={handleInputChange} id="desc" name="description" />
                         <span className="text-danger">{errors.description}</span>
                     </div>
                 </div>
