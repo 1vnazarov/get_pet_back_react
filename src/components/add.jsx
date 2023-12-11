@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
-import RegisterRequest from "../modules/registerRequest";
-import GetProfileRequest from "../modules/getProfileRequest";
+import {GetProfileRequest, RegisterRequest} from "../modules/requests";
 import { validateEmail, validateName, validatePhone, validatePassword, validateConfirm, validatePasswordConfirmation, validateFile } from "../modules/validate";
 
 const validateText = (name, value) => {

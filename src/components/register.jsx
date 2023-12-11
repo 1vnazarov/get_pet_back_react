@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import RegisterRequest from "../modules/registerRequest";
+import {RegisterRequest} from "../modules/requests";
 import { validateName, validatePhone, validateEmail, validatePassword, validatePasswordConfirmation, validateConfirm } from "../modules/validate";
 import { useNavigate } from "react-router-dom";
 

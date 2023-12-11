@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import ButtonsCard from "./buttonsCard";
-import GetProfileRequest from "../modules/getProfileRequest";
+import {GetProfileRequest} from "../modules/requests";
 import { validateEmail, validatePhone } from "../modules/validate";
 
 const Profile = () => {
