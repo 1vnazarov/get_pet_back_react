@@ -2,14 +2,12 @@ import { React, useState } from "react";
 import Modal from "./modal";
 const ButtonsCard = (props) => {
     const [showModal, setShowModal] = useState(false);
-
     const handleDeleteClick = () => {
         setShowModal(true);
-    };
-
+    }
     const handleCloseModal = () => {
         setShowModal(false);
-    };
+    }
 
     const handleConfirmDelete = () => {
         fetch(`https://pets.сделай.site/api/users/orders/${props.data.id}`, {
@@ -17,14 +15,11 @@ const ButtonsCard = (props) => {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
-        })
-            .then(response => response.json())
-            .then(result => {
+        }).then(response => response.json()).then(result => {
                 console.log(result);
                 handleCloseModal(); // Закрывать модальное окно после удаления
-            })
-            .catch(error => console.log('error', error));
-    };
+            }).catch(error => console.log('error', error));
+    }
 
     const Edit = () => {
         if (['active', 'onModeration'].includes(props.data.status)) return <button className="btn btn-primary mb-2">Редактировать</button>
@@ -59,8 +54,11 @@ const ButtonsCard = (props) => {
                 show={showModal}
                 closeModal={handleCloseModal}
                 confirmDelete={handleConfirmDelete}
+                primaryClass="danger"
+                primaryText={"Удалить"}
+                secondaryText={"Отмена"}
                 title="Подтверждение удаления"
-                body="Вы уверены, что хотите удалить данные?"
+                body="Вы уверены, что хотите удалить запись?"
             />
         </>
     );
