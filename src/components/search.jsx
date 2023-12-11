@@ -1,24 +1,31 @@
-import { React, useState, useEffect } from "react";
-import Pagination from "./pagination";
+import { useState, useEffect } from "react";
+import Pagination from './pagination'
 import { useLocation } from "react-router-dom";
+
 const Search = () => {
-    const location = useLocation()
-    const request = (card, setCard) => {
-        console.log(location.state)
-        console.log(`https://pets.сделай.site/api/search?query=${location.state}`)
-        fetch(`https://pets.сделай.site/api/search?query=${location.state}`).then(response => response.json()).then(result => {
-            console.log(result);
-            if ('data' in result) {
-                console.log('aaaaaaaaaaa')
-                setCard(result);
-            }
-        }).catch(error => console.log('error', error))
-    }
+    const location = useLocation();
+    const query = location.state?.query;
+
     const [card, setCard] = useState({ data: { order: [] } });
+
     useEffect(() => {
-        request(card, setCard);
-        console.log(card)
-    }, []);
+        if (!query) return; // Если запроса нет, не продолжаем
+
+        const request = () => {
+            console.log(`https://pets.сделай.site/api/search?query=${query}`);
+            fetch(`https://pets.сделай.site/api/search?query=${query}`)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    if ('data' in result) {
+                        setCard(result);
+                        console.log(card)
+                    }
+                })
+                .catch(error => console.log('error', error));
+        };
+        request();
+    }, [query]);
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Поиск по объявлениям</h2>
