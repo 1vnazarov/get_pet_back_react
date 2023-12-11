@@ -4,15 +4,14 @@ import { useLocation } from "react-router-dom";
 
 const Search = () => {
     const location = useLocation();
-    const query = location.state?.query || "";
+    const query = location.state?.query
 
     const [card, setCard] = useState({ data: { order: [] } });
 
     useEffect(() => {
         const request = () => {
             console.log(`https://pets.сделай.site/api/search?query=${query}`);
-            fetch(`https://pets.сделай.site/api/search?query=${query}`)
-                .then(response => response.json())
+            fetch(`https://pets.сделай.site/api/search?query=${query}`).then(response => response.json())
                 .then(result => {
                     console.log(result);
                     if ('data' in result) {
@@ -21,8 +20,9 @@ const Search = () => {
                     }
                 })
                 .catch(error => console.log('error', error));
-        };
+        }
         request();
+        console.log(card.data.order)
         if (card.data.order.length > 0) {
             document.getElementById('cards').style.display = 'block'
             document.getElementById('res').style.display = 'block'
