@@ -18,13 +18,15 @@ const CardPage = () => {
             })
             .catch(error => console.log('error', error));
     }
-    return (  
+    return (
         <div>
-            <Header/>
-            <Card data={card.data.pet} center={true} />
-            <Footer/>
+            <Header />
+            <main style={{ minHeight: "70vh" }}>
+                <Card data={card.data.pet} center={true} />
+            </main>
+            <Footer />
         </div>
     );
 }
- 
+
 export default CardPage;

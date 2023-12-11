@@ -1,8 +1,8 @@
 import React from "react";
 import logo from '../images/logo.png';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import QuickSearch from "./quickSearch";
 const Header = () => {
-    const navigate = useNavigate()
     return (
         <header>
             <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
@@ -37,21 +37,7 @@ const Header = () => {
                                 </ul>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <datalist id="pets">
-                                <option value="Кошка"></option>
-                                <option value="Собака"></option>
-                                <option value="Корова"></option>
-                                <option value="Крокодил"></option>
-                                <option value="Сова"></option>
-                            </datalist>
-                            <input className="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск"
-                                list="pets" id='search' />
-                            <button className="btn btn-outline-light" onClick={() => {
-                                localStorage.setItem("query", document.getElementById('search').value)
-                                navigate('/search')
-                            }}>Поиск</button>
-                        </form>
+                        <QuickSearch/>
                     </div>
                 </div>
             </nav>
