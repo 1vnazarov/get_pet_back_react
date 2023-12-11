@@ -2,8 +2,10 @@ import { React, useState, useEffect } from "react";
 import ButtonsCard from "./buttonsCard";
 import {GetProfileRequest} from "../modules/requests";
 import { validateEmail, validatePhone } from "../modules/validate";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+    const navigate = useNavigate()
     const [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
     const [card, setCard] =  useState({ data: { orders: [] } });
     const request = (card, setCard) => {
@@ -79,7 +81,7 @@ const Profile = () => {
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
-            <div className="w-25 m-auto minContainer">
+            <div className="w-25 m-auto minContainer d-flex" style={{flexDirection: "column"}}>
                 <form>
                     <div className="row mb-3">
                         <label htmlFor="name" className="col-form-label">Имя</label>
@@ -95,8 +97,8 @@ const Profile = () => {
                             <input name="email" type="email" value={profile.email} className={`form-control m-auto ${validations.email ? "is-valid" : errors.email ? "is-invalid" : ""}`} id="email" onChange={handleInputChange} />
                             <span className="text-danger">{errors.email}</span>
                             <p className='text-center text-success' id='success_email' style={{ display: "none" }}>Почта изменена</p>
-                            <p className="btn btn-primary mt-3" onClick={() => handleSubmit("email")}>Изменить</p>
                         </div>
+                        <p className="btn btn-primary mt-3 w-50 m-auto" onClick={() => handleSubmit("email")}>Изменить</p>
                     </div>
                     <div className="row mb-3">
                         <label htmlFor="tel" className="col-form-label">Телефон</label>
@@ -104,24 +106,15 @@ const Profile = () => {
                             <input name="phone" type="tel" className={`form-control m-auto ${validations.phone ? "is-valid" : errors.phone ? "is-invalid" : ""}`} id="phone" value={profile.phone} onChange={handleInputChange} />
                             <span className="text-danger">{errors.phone}</span>
                             <p className='text-center text-success' id='success_phone' style={{ display: "none" }}>Телефон изменен</p>
-                            <p className="btn btn-primary mt-3" onClick={() => handleSubmit("phone")}>Изменить</p>
                         </div>
+                        <p className="btn btn-primary mt-3 w-50 m-auto" onClick={() => handleSubmit("phone")}>Изменить</p>
                     </div>
                 </form>
                 <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
                 <p onClick={() => {
                     localStorage.setItem("token", null);
-                    document.getElementById("success").style.color = "green";
-                    document.getElementById("name").value = ""
-                    document.getElementById("phone").value = ""
-                    document.getElementById("email").value = ""
-                    document.getElementById("phone").classList.remove('is-valid')
-                    document.getElementById("email").classList.remove('is-valid')
-                    document.getElementById("userCards").style.display = 'none'
-                    document.getElementById("noOrders").style.display = 'block'
-                    document.getElementById("success_email").style.display = 'none'
-                    document.getElementById("success_phone").style.display = 'none'
-                }} className="btn btn-primary">Выйти</p>
+                    navigate('/login')
+                }} className="btn btn-primary w-50" style={{alignSelf: "center"}}>Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
             <h2 className="text-center text-white bg-primary m-3">Ваши карточки</h2>
