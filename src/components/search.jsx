@@ -41,7 +41,7 @@ const Search = () => {
                 <p className="btn btn-primary">Найти</p>
             </form>
             <p className="text-center" style={{display:"none"}} id='res'>Результаты поиска</p>
-                <div className="row justify-content-center" id='card' style={{display:"none"}}>
+                <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center" id='card' style={{display:"none"}}>
                 {cards}
             </div>
         </main>
