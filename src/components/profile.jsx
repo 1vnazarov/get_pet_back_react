@@ -117,12 +117,16 @@ const Profile = () => {
                         <p className="btn btn-primary mt-3 w-50 m-auto" onClick={() => handleSubmit("phone")}>Изменить</p>
                     </div>
                 </form>
-                <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
+                <p>Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
+                <p onClick={() => {
+                    localStorage.setItem("token", null);
+                    navigate('/login')
+                }} className="btn btn-primary w-50" style={{alignSelf: "center"}}>Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
             <h2 className="text-center text-white bg-primary m-3">Ваши карточки</h2>
             <p className='text-center' id='noOrders' style={{ display: 'none' }}>Нет объявлений</p>
-            <div className="row justify-content-center" id='userCards' style={{display:"none"}}>
+            <div className="d-flex flex-wrap justify-content-center" id='userCards' style={{display:"none"}}>
                 {cards}
             </div>
         </main>
