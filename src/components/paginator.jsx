@@ -22,9 +22,7 @@ const CardsList = ({ data, itemsPerPage }) => {
         <div>
             <div className="row justify-content-center">
                 {currentData.map(item => (
-                    <div className="col-md-4" key={item.id}>
-                        <Card data={item} />
-                    </div>
+                    <Card data={item} />
                 ))}
             </div>
             <Paginator totalPages={totalPages} paginate={paginate} />

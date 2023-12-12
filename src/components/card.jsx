@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Card = (props) => {
     const navigate = useNavigate();
     return (
-        <div className={"card m-" + (props.center ? "auto" : "3")} style={{ cursor: "pointer", maxWidth: "35vw" }} onClick={() => {
+        <div className={"card m-" + (props.center ? "auto" : "3")} style={{ cursor: "pointer", maxWidth: "25vw", minWidth:"320px"}} onClick={() => {
             navigate("/card", { state: props.data.id })
         }}>
             <img src={'https://pets.сделай.site' + (props.data.photos || props.data.photos1)} className="card-img-top" alt="pig" height="300" />
