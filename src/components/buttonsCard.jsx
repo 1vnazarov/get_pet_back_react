@@ -1,5 +1,15 @@
 import { React, useState } from "react";
 import Modal from "./modal";
+
+const EditableField = ({ label, name, value, type = 'text', onChange = () => {} }) => (
+    <>
+        <label>{label}</label>
+        {type != 'file' &&
+            <input className="m-2" type={type} name={name} value={value} onChange={onChange} />
+        }
+    </>
+)
+
 const ButtonsCard = (props) => {
     const [showModal, setShowModal] = useState(false);
     const handleDeleteClick = () => {
@@ -39,16 +49,7 @@ const ButtonsCard = (props) => {
             console.log(result);
             setEditable(false)
         }).catch(error => console.log('error', error));
-    };
-
-    const EditableField = ({ label, name, value, type = 'text' }) => (
-        <>
-            <label>{label}</label>
-            {type != 'file' &&
-                <input className="m-2" type={type} name={name} value={value} onChange={(e) => setLocalData({ ...localData, [e.target.name]: e.target.value })} />
-            }
-        </>
-    );
+    }
 
     const readOnlyView = () => (
             <>
@@ -66,9 +67,9 @@ const ButtonsCard = (props) => {
     const editableFields = () => (
         <form id='update' style={{ display: "flex", flexDirection: "column" }}>
             <EditableField label="Фото:" type="file"/>
-            <input className="m-2" type="file" accept="image/*" name="photos1" onChange={(e) => setLocalData({...localData, [e.target.name]: ``})}/>
-            <EditableField label="Описание:" name="description" value={localData.description || ''} />
-            <EditableField label="Номер чипа:" name="mark" value={localData.mark || ''} />
+            <input className="m-2" type="file" accept="image/*" name="photos1"/>
+            <EditableField label="Описание:" name="description" value={localData.description || ''} onChange={(e) => setLocalData({ ...localData, [e.target.name]: e.target.value })} />
+            <EditableField label="Номер чипа:" name="mark" value={localData.mark || ''} onChange={(e) => setLocalData({ ...localData, [e.target.name]: e.target.value })} />
         </form>
     )
 
