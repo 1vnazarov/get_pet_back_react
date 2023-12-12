@@ -21,6 +21,7 @@ const CardsList = ({ data, itemsPerPage }) => {
     return (
         <div>
             <div className="row justify-content-center">
+            <p className="text-center" id='res'>{data.length > 0 && "Результаты поиска" || "Нет результатов"}</p>
                 {currentData.map(item => (
                     <Card data={item} />
                 ))}

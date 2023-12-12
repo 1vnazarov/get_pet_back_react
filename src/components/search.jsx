@@ -22,8 +22,6 @@ const Search = () => {
 
     useEffect(() => {
         request(card, setCard);
-            document.getElementById('cards').style.display = 'block'
-            document.getElementById('res').style.display = 'block'
     }, [query]);
 
     return (
@@ -44,10 +42,7 @@ const Search = () => {
                 </div>
                 <p className="btn btn-primary">Найти</p>
             </form>
-            <p className="text-center" style={{ display: "none" }} id='res'>Результаты поиска</p>
-            <div id='cards' style={{ display: "none" }}>
-                <CardsList data={card.data.order} itemsPerPage={6}/>
-            </div>
+            <CardsList data={card.data.order} itemsPerPage={6}/>
         </main>
     );
 }
