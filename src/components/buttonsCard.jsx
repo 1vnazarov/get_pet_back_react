@@ -18,6 +18,7 @@ const ButtonsCard = (props) => {
         }).then(response => response.json()).then(result => {
             console.log(result);
             handleCloseModal(); // Закрывать модальное окно после удаления
+            window.location.reload()
         }).catch(error => console.log('error', error));
     }
 
@@ -33,7 +34,7 @@ const ButtonsCard = (props) => {
 
     return (
         <>
-            <div className="minContainer card m-3" style={{ cursor: "pointer", maxWidth: "35vw" }}>
+            <div className="minContainer card m-3" style={{maxWidth: "35vw" }}>
                 <img src={'https://pets.сделай.site' + (props.data.photos || props.data.photos1)} className="card-img-top" alt="pig" height="300" />
                 <div className="card-body">
                     <h5 className="card-title text-center">{props.data.kind}</h5>
