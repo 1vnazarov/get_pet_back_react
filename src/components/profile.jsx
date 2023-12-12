@@ -77,14 +77,6 @@ const Profile = () => {
         }
     };
 
-    const [showModal, setShowModal] = useState(false);
-    const handleDeleteClick = () => {
-        setShowModal(true);
-    }
-    const handleCloseModal = () => {
-        setShowModal(false);
-    }
-
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Личный кабинет</h2>
