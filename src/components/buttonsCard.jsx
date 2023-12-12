@@ -53,7 +53,7 @@ const ButtonsCard = (props) => {
             <Modal
                 show={showModal}
                 closeModal={handleCloseModal}
-                confirmDelete={handleConfirmDelete}
+                confirm={handleConfirmDelete}
                 primaryClass="danger"
                 primaryText={"Удалить"}
                 secondaryText={"Отмена"}

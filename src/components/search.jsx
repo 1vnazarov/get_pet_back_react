@@ -8,26 +8,24 @@ const Search = () => {
 
     const [card, setCard] = useState({ data: { order: [] } });
 
+    const request = (card, setCard) => {
+        console.log(`https://pets.сделай.site/api/search?query=${query}`);
+        fetch(`https://pets.сделай.site/api/search?query=${query}`).then(response => response.json())
+            .then(result => {
+                console.log(result);
+                    setCard(result);
+                    console.log(card)
+                    console.log('qwerty')
+            })
+            .catch(error => console.log('error', error));
+    }
+
     useEffect(() => {
-        const request = () => {
-            console.log(`https://pets.сделай.site/api/search?query=${query}`);
-            fetch(`https://pets.сделай.site/api/search?query=${query}`).then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                    if ('data' in result) {
-                        setCard(result);
-                        console.log(card)
-                    }
-                })
-                .catch(error => console.log('error', error));
-        }
-        request();
-        console.log(card.data.order)
-        if (card.data.order.length > 0) {
+        request(card, setCard);
             document.getElementById('cards').style.display = 'block'
             document.getElementById('res').style.display = 'block'
-        }
     }, [query]);
+
     return (
         <main style={{ "minHeight": "70vh" }}>
             <h2 className="text-center text-white bg-primary m-3">Поиск по объявлениям</h2>
@@ -48,7 +46,7 @@ const Search = () => {
             </form>
             <p className="text-center" style={{ display: "none" }} id='res'>Результаты поиска</p>
             <div id='cards' style={{ display: "none" }}>
-                <CardsList data={card.data.order} itemsPerPage={6} />
+                <CardsList data={card.data.order} itemsPerPage={6}/>
             </div>
         </main>
     );

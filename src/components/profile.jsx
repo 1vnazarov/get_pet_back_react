@@ -77,6 +77,13 @@ const Profile = () => {
         }
     };
 
+    const [showModal, setShowModal] = useState(false);
+    const handleDeleteClick = () => {
+        setShowModal(true);
+    }
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
 
     return (
         <main style={{ "minHeight": "70vh" }}>
@@ -111,10 +118,6 @@ const Profile = () => {
                     </div>
                 </form>
                 <p className="col-form-label">Количество дней с момента регистрации: {Math.floor((new Date() - new Date(profile.registrationDate)) / 86400000) || 0}</p>
-                <p onClick={() => {
-                    localStorage.setItem("token", null);
-                    navigate('/login')
-                }} className="btn btn-primary w-50" style={{alignSelf: "center"}}>Выйти</p>
             </div>
             <p className='text-center' id='success' style={{ color: "white" }}>Вы вышли из аккаунта</p>
             <h2 className="text-center text-white bg-primary m-3">Ваши карточки</h2>

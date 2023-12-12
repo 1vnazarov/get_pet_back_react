@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ show, primaryText, primaryClass = 'primary', secondaryText, closeModal, confirmDelete, title, body }) => {
+const Modal = ({ show, primaryText, primaryClass = 'primary', secondaryText, closeModal, confirm, title, body }) => {
     const style = show ? { display: "block" } : {};
     const className = `modal fade ${show ? "show" : ""}`;
     return (
@@ -19,7 +19,7 @@ const Modal = ({ show, primaryText, primaryClass = 'primary', secondaryText, clo
                                 className="btn btn-secondary"
                                 data-dismiss="modal"
                                 onClick={closeModal}>{secondaryText}</button>}
-                            <button type="button" className={`btn btn-${primaryClass}`} onClick={confirmDelete}>{primaryText}</button>
+                            <button type="button" className={`btn btn-${primaryClass}`} onClick={confirm}>{primaryText}</button>
                         </div>
                     </div>
                 </div>
