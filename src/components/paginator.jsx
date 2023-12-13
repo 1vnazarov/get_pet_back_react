@@ -40,7 +40,7 @@ const Paginator = ({ totalPages, paginate }) => {
 
     return (
         <nav>
-            <ul className="pagination justify-content-center">
+            <ul className="pagination justify-content-center d-flex flex-wrap">
                 {pageNumbers.map(number => (
                     <li key={number} className="page-item">
                         <button onClick={() => paginate(number)} className="page-link">
