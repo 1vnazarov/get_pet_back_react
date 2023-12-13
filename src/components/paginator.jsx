@@ -7,12 +7,19 @@ const CardsList = ({ data, itemsPerPage }) => {
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
+        setCurrentPage(1);
+    }, [data]);
+
+    useEffect(() => {
         if (data) {
-            console.log('im have data', data)
             setTotalPages(Math.ceil(data.length / itemsPerPage));
             const indexOfLastItem = currentPage * itemsPerPage;
             const indexOfFirstItem = indexOfLastItem - itemsPerPage;
             setCurrentData(data.slice(indexOfFirstItem, indexOfLastItem));
+        }
+        else {
+            setCurrentData([]);
+            setTotalPages(0);
         }
     }, [data, currentPage, itemsPerPage]);
 
@@ -21,9 +28,11 @@ const CardsList = ({ data, itemsPerPage }) => {
     return (
         <div>
             <div className="row justify-content-center">
-            <p className="text-center" id='res'>{data.length > 0 && "Результаты поиска" || "Нет результатов"}</p>
-                {currentData.map(item => (
-                    <Card data={item} />
+                <p className="text-center" id='res'>
+                    {data.length > 0 ? "Результаты поиска" : "Нет результатов"}
+                </p>
+                {currentData.map((item, index) => (
+                    <Card key={index} data={item} />
                 ))}
             </div>
             <Paginator totalPages={totalPages} paginate={paginate} />
