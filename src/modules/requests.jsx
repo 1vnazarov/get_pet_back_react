@@ -16,4 +16,17 @@ const RegisterRequest = (body, callback = () => {}) => {
             callback(result)
         }).catch(error => console.log('error', error));
 }
-export {GetProfileRequest, RegisterRequest};
+
+const QuickSearchRequest = (query, card, setCard) => {
+    console.log(`https://pets.сделай.site/api/search?query=${query}`);
+    fetch(`https://pets.сделай.site/api/search?query=${query}`).then(response => response.json())
+        .then(result => {
+            console.log(result);
+                setCard(result);
+                console.log(card)
+                console.log('qwerty')
+        })
+        .catch(error => console.log('error', error));
+}
+
+export {GetProfileRequest, RegisterRequest, QuickSearchRequest};

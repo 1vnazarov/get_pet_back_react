@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CardsList from "./paginator";
 import { useLocation } from "react-router-dom";
+import { QuickSearchRequest } from "../modules/requests";
 
 const Search = () => {
     const location = useLocation();
@@ -8,20 +9,8 @@ const Search = () => {
 
     const [card, setCard] = useState({ data: { order: [] } });
 
-    const request = (card, setCard) => {
-        console.log(`https://pets.сделай.site/api/search?query=${query}`);
-        fetch(`https://pets.сделай.site/api/search?query=${query}`).then(response => response.json())
-            .then(result => {
-                console.log(result);
-                    setCard(result);
-                    console.log(card)
-                    console.log('qwerty')
-            })
-            .catch(error => console.log('error', error));
-    }
-
     useEffect(() => {
-        request(card, setCard);
+        QuickSearchRequest(query, card, setCard)
     }, [query]);
 
     return (
