@@ -7,7 +7,7 @@ const Search = () => {
     const location = useLocation();
     const query = location.state?.query
 
-    const [card, setCard] = useState({ data: { order: [] } });
+    const [card, setCard] = useState({ data: { orders: [] } });
 
     useEffect(() => {
         QuickSearchRequest(query, card, setCard)
@@ -31,7 +31,7 @@ const Search = () => {
                 </div>
                 <p className="btn btn-primary">Найти</p>
             </form>
-            <CardsList data={card.data.order} itemsPerPage={6}/>
+            <CardsList data={card.data.orders} itemsPerPage={6}/>
         </main>
     );
 }
