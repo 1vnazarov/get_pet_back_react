@@ -32,11 +32,15 @@ const ButtonsCard = (props) => {
         }).catch(error => console.log('error', error));
     }
 
-    const EditOrCancel = () => <button className={`m-auto btn btn-${editable && "danger" || "primary"} mb-2`} style={{ width: "90%" }} onClick={() => setEditable(!editable)}>{editable ? 'Отменить' : 'Редактировать'}</button>
+    const EditOrCancel = () => <button className={`m-auto btn btn-${editable && "danger" || "primary"} mb-2`} style={{ width: "90%" }} onClick={() => {
+        setEditable(!editable)
+        if (editable) setLocalData(backup)
+    }}>{editable ? 'Отменить' : 'Редактировать'}</button>
 
     const Remove = () => <button className="m-auto btn btn-danger mb-2" style={{ width: "90%" }} onClick={handleDeleteClick}>Удалить</button>
     const [editable, setEditable] = useState(false);
     const [localData, setLocalData] = useState({ ...props.data });
+    const [backup, setBackup] = useState({...localData})
 
     const handleSave = () => {
         fetch(`https://pets.сделай.site/api/pets/${props.data.id}`, {
@@ -48,6 +52,7 @@ const ButtonsCard = (props) => {
         }).then(response => response.json()).then(result => {
             console.log(result);
             setEditable(false)
+            setBackup(localData)
         }).catch(error => console.log('error', error));
     }
 
