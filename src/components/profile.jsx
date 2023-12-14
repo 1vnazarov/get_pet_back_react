@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const navigate = useNavigate()
-    const [profile, setProfile] = useState({ data: { user: [{ email: "", phone: "", name: "", registrationDate: new Date() }] } });
+    const [profile, setProfile] = useState({ email: "", phone: "", name: "", registrationDate: new Date() });
     const [card, setCard] =  useState({ data: { orders: [] } });
     const request = (card, setCard) => {
         fetch("https://pets.сделай.site/api/users/orders", {
