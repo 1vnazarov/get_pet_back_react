@@ -150,17 +150,7 @@ const Add = () => {
                 data.delete('password_confirmation')
             }
             else { // Попробовать зарегаться
-                RegisterRequest(data, (status) => {
-                    if (status == 204) {
-                        document.getElementById("success").style.display = "block";
-                        document.getElementById("fail").style.display = "none";
-                    }
-                    else {
-                        document.getElementById("fail").style.display = "block";
-                        document.getElementById("success").style.display = "none";
-                        return
-                    }
-                });
+                RegisterRequest(data);
             }
             request(data)
         }

@@ -85,7 +85,7 @@ const Auth = () => {
                 <Link className="btn btn-primary" to={'/register'}>На страницу регистрации</Link>
             </form>
             <p className='text-danger text-center' id='error' style={{ display: 'none' }}>Неправилный адрес электронной почты и e-mail</p>
-            <p className='text-success text-center' id='success' style={{ display: token ? "block" : 'none' }}>Вы успешно вошли в аккаунт, ваш токен: {token}</p>
+            <p className='text-success text-center' id='success' style={{ display: token ? "block" : 'none' }}>Вы успешно вошли в аккаунт</p>
         </main>
     );
 }
